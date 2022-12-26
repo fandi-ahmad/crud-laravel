@@ -25,4 +25,12 @@ class HomeController extends Controller
     public function useHead() {
         return view('home.useHead');
     }
+
+    public function contoh() {
+        return view('home.contoh');
+    }
+    public function contohPost(Request $req) {
+        $name = $req -> get('nama');
+        return "ini dari fungsi contoh post dengan nama ". $name;
+    }
 }

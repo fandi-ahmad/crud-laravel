@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\HomeController;
 use App\http\Controllers\ContohController;
+use App\http\Controllers\pegawaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::get('/home/contoh', [HomeController::class, 'contoh']);
 Route::post('/home/contoh', [HomeController::class, 'contohPost']);
 
 Route::resource('/contoh', ContohController::class);
+Route::resource('/pegawai', pegawaiController::class);

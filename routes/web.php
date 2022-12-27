@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\http\Controllers\HomeController;
 use App\http\Controllers\ContohController;
 use App\http\Controllers\pegawaiController;
+use App\Http\Controllers\StaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,4 @@ Route::post('/home/contoh', [HomeController::class, 'contohPost']);
 
 Route::resource('/contoh', ContohController::class);
 Route::resource('/pegawai', pegawaiController::class);
+Route::resource('/staff', StaffController::class);

@@ -7,7 +7,13 @@
         <p class="alert alert-success">{{ Session::get('success') }}</p>    
     @endif
 
-    <a class="btn btn-primary btn-sm mb-2" href="{{ url('pegawai/create') }}">create</a>
+    <div class="d-flex flex-row align-items-center justify-content-between mb-3">
+        <a class="btn btn-primary btn-sm" href="{{ url('pegawai/create') }}">create</a>
+        <form action="{{ url('pegawai') }}" method="GET" class="d-flex flex-row gap-2 align-items-center">    
+            <input type="text" name="keyword" class="form-control" value="{{ $keyword }}">
+            <button type="submit" class="btn btn-sm btn-secondary">search</button>
+        </form>
+    </div>
     <table class="table table-bordered">
         <tr>
             <th>no</th>
@@ -35,4 +41,7 @@
             </tr>
         @endforeach
     </table>
+    {{ $datas->links() }}
+    {{-- <div class="d-flex" style="width: fit-content; height: fit-content;">
+    </div> --}}
 @endsection

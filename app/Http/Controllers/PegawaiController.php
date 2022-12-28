@@ -14,11 +14,19 @@ class pegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        $datas = pegawai::all();
+        $keyword = $req -> keyword;
+        $datas = pegawai::where('nama', 'LIKE', '%'.$keyword.'%')
+            -> orWhere('gelar', 'LIKE', '%'.$keyword.'%')
+            -> orWhere('nip', 'LIKE', '%'.$keyword.'%')
+            -> paginate(10);
+        $datas -> withPath('pegawai');
+        $datas -> appends($req->all());
+        // -> get();
+        // $datas = pegawai::all();
         // dd($datas);
-        return view('pegawai.index', compact('datas'));
+        return view('pegawai.index', compact('datas', 'keyword'));
     }
 
     /**

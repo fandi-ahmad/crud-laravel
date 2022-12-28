@@ -3,6 +3,10 @@
 @section('content')
     <br>
 
+    @if(Session::has('success'))
+        <p class="alert alert-success">{{ Session::get('success') }}</p>    
+    @endif
+
     <a class="btn btn-primary btn-sm mb-2" href="{{ url('pegawai/create') }}">create</a>
     <table class="table table-bordered">
         <tr>

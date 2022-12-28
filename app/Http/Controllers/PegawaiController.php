@@ -17,6 +17,7 @@ class pegawaiController extends Controller
     public function index()
     {
         $datas = pegawai::all();
+        // dd($datas);
         return view('pegawai.index', compact('datas'));
     }
 
@@ -46,7 +47,7 @@ class pegawaiController extends Controller
         $model->nip = $req->nip;
         $model->save();
 
-        return redirect('pegawai');
+        return redirect('pegawai') -> with('success', 'data berhasil disimpan');
     }
 
     /**
@@ -88,7 +89,7 @@ class pegawaiController extends Controller
         $model->nip = $req->nip;
         $model->save();
 
-        return redirect('pegawai');
+        return redirect('pegawai') -> with('success', 'data berhasil diperbarui');
     }
 
     /**

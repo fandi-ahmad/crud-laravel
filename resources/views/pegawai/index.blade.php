@@ -17,6 +17,7 @@
     <table class="table table-bordered">
         <tr>
             <th>no</th>
+            <th>foto profile</th>
             <th>nama</th>
             <th>tanggal lahir</th>
             <th>gelar</th>
@@ -26,22 +27,27 @@
         @foreach($datas as $key => $value)
             <tr>
                 <td>{{ $loop -> index + 1 }}</td>
+                <td>
+                    @if(strlen($value->foto_profil)>0)
+                        <img src="{{ asset('foto/'.$value -> foto_profil) }}" alt="" width="80px">
+                    @endif
+                </td>
                 <td>{{ $value -> nama }}</td>
                 <td>{{ $value -> tanggal_lahir }}</td>
                 <td>{{ $value -> gelar }}</td>
                 <td>{{ $value -> nip }}</td>
-                <td class="d-flex flex-row align-items-center gap-2">
-                    <a class="btn btn-primary btn-sm" href="{{ url('pegawai/'.$value->id.'/edit') }}">edit</a>
-                    <form action="{{ url('pegawai/'.$value->id) }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button class="btn btn-danger btn-sm" type="submit">delete</button>
-                    </form>
+                <td>
+                    <div class="d-flex flex-row align-items-center gap-2">
+                        <a class="btn btn-primary btn-sm" href="{{ url('pegawai/'.$value->id.'/edit') }}">edit</a>
+                        <form action="{{ url('pegawai/'.$value->id) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger btn-sm" type="submit">delete</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         @endforeach
     </table>
     {{ $datas->links() }}
-    {{-- <div class="d-flex" style="width: fit-content; height: fit-content;">
-    </div> --}}
 @endsection

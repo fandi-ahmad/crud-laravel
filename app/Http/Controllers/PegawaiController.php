@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\pegawai;
 use App\Http\Requests\PegawaiRequest;
+use Illuminate\Support\Facades\File;
 
 
 class pegawaiController extends Controller
@@ -53,6 +54,14 @@ class pegawaiController extends Controller
         $model->tanggal_lahir = $req->tanggal_lahir;
         $model->gelar = $req->gelar;
         $model->nip = $req->nip;
+
+        if ($req -> file('foto_profil')) {
+            $file = $req -> file('foto_profil');
+            $nama_file = time().str_replace(' ', '', $file->getClientOriginalName());
+            $file -> move('foto', $nama_file);
+            $model -> foto_profil = $nama_file;
+        }
+
         $model->save();
 
         return redirect('pegawai') -> with('success', 'data berhasil disimpan');
@@ -95,6 +104,16 @@ class pegawaiController extends Controller
         $model->tanggal_lahir = $req->tanggal_lahir;
         $model->gelar = $req->gelar;
         $model->nip = $req->nip;
+
+        if ($req -> file('foto_profil')) {
+            $file = $req -> file('foto_profil');
+            $nama_file = time().str_replace(' ', '', $file->getClientOriginalName());
+            $file -> move('foto', $nama_file);
+
+            File::delete('foto', $model->foto_profil);
+            $model -> foto_profil = $nama_file;
+        }
+
         $model->save();
 
         return redirect('pegawai') -> with('success', 'data berhasil diperbarui');

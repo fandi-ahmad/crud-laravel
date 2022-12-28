@@ -35,5 +35,17 @@
             @endforeach
         </td>
     </tr>
+    <tr>
+        <td>foto profile</td>
+        <td>
+            <input type="file" name="foto_profil" class="form-control">
+            @foreach($errors -> get('foto_profil') as $msg)
+                <small class="text-danger">{{ $msg }}</small>
+            @endforeach
+            @if(strlen($model->foto_profil)>0)
+                <img src="{{ asset('foto/'.$model -> foto_profil) }}" alt="" width="80px">
+            @endif
+        </td>
+    </tr>
 </table>
 <button class="btn btn-sm btn-info" type="submit">save</button>

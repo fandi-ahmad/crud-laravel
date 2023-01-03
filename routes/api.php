@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\StaffController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('staff', [StaffController::class, 'index']);
+Route::post('staff/store', [StaffController::class, 'store']);
+Route::get('staff/{id}', [StaffController::class, 'show']);
+Route::post('staff/update/{id}', [StaffController::class, 'update']);
+Route::delete('staff/{id}', [StaffController::class, 'destroy']);

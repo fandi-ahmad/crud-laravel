@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\staff;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +18,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $datas = staff::all();
+        $datas = Staff::all();
         return view('staff.index', compact('datas'));
     }
 
@@ -29,7 +29,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        $model = new staff;
+        $model = new Staff;
         return view('staff.create', compact('model'));
     }
 
@@ -39,14 +39,13 @@ class StaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
         $model = new staff;
-        $model->nama = $req->nama;
-        $model->tanggal_lahir = $req->tanggal_lahir;
-        $model->gelar = $req->gelar;
+        $model->nama = $request->nama;
+        $model->tanggal_lahir = $request->tanggal_lahir;
+        $model->gelar = $request->gelar;
         $model->save();
-
         return redirect('staff');
     }
 
@@ -80,15 +79,14 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, $id)
+    public function update(Request $request, $id)
     {
         $model = staff::find($id);
-        $model->nama = $req->nama;
-        $model->tanggal_lahir = $req->tanggal_lahir;
-        $model->gelar = $req->gelar;
+        $model->nama = $request->nama;
+        $model->tanggal_lahir = $request->tanggal_lahir;
+        $model->gelar = $request->gelar;
         $model->save();
-
-        return redirect('staff');
+        return redirect('staff');  
     }
 
     /**

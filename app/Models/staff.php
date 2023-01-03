@@ -9,4 +9,9 @@ class staff extends Model
 {
     use HasFactory;
     protected $table = 'staff';
+    protected $fillable = [
+        'nama',
+        'tanggal_lahir',
+        'gelar'
+    ];
 }
